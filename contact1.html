@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="navi.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevent scrolling while the animation is in progress */
+            background-image: url('cont.jpg'); /* Corrected image path */
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(5px); /* Adjust the blur effect as needed */
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto 50px auto; /* Set bottom margin equal to top margin */
+            padding: 20px;
+            background-color: black; /* Change background color to black */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            transition: transform 2s ease, opacity 2s ease, margin 1s ease; /* Apply smooth transition */
+            transform: scale(0.8); /* Initially scale down the container */
+            opacity: 0; /* Initially hide the container */
+        }
+        .show-form {
+            transform: scale(1); /* Pop-up effect */
+            opacity: 1; /* Show the container */
+            margin: 50px auto 50px auto; /* Reset margin */
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: yellow; /* Change font color to yellow */
+        }
+        label {
+            font-weight: bold;
+            color: yellow; /* Change font color to yellow */
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px; /* Reduced margin */
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+            color: yellow; /* Change font color to yellow */
+            background-color: black; /* Change background color to black */
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px; /* Reduced margin */
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 60px; /* Set minimum height */
+            color: yellow; /* Change font color to yellow */
+            background-color: black; /* Change background color to black */
+        }
+        button {
+            background-color: red; /* Change button color to red */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #4d0000; /* Darker red color */
+        }
+        .contact-info {
+            text-align: center;
+            margin-top: 20px;
+            color: yellow; /* Change font color to yellow */
+        }
+        .footer-line {
+            border-top: 1px solid #ccc;
+            margin-top: 20px;
+            padding-top: 20px;
+            text-align: center;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container1">
+          <h1 class="logo"><a href="/index.html">Smart Canteen</a></h1>
+          <ul>
+            <li><a href="Home page.html">Home</a></li>
+            <li><a href="LoginPage.html">Login</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="ratings.html">Reviews</a></li>
+            <li><a href="collaborators.html">Collaborators</a></li>
+            <li><a href="contact1.html">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+<div class="container" id="contactForm">
+    <h2>Contact Us</h2>
+
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="registerNumber">Register Number:</label>
+            <input type="text" class="form-control" id="registerNumber" name="registerNumber" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea class="form-control" id="message" name="message" rows="2" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" style="background-color: red;">Submit</button> <!-- Changed button color inline -->
+    </form>
+    <div class="contact-info">
+        <p>For further queries, reach out to:</p>
+        <p>Email: smartcanteen@gmail.com</p>
+        <p>Phone: 98473xxxxx</p>
+    </div>
+    <div class="footer-line">---</div>
+</div>
+
+<script>
+    // Add a class to show the form with animation after the page loads
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('contactForm').classList.add('show-form');
+    });
+</script>
+</body>
+</html>

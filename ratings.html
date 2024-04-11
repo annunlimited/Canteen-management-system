@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="navi.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canteen Ratings and Reviews</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('cont.jpg'); /* Add background image */
+            background-size: cover;
+            background-position: center;
+            color: yellow;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transform: translateY(-50px); /* Initially move container up */
+            opacity: 0; /* Initially hide the container */
+            transition: transform 0.5s ease, opacity 0.5s ease; /* Apply smooth transition */
+        }
+        .container.show-form {
+            transform: translateY(0); /* Move container down when shown */
+            opacity: 1; /* Show the container */
+        }
+        h1, h2 {
+            text-align: center;
+            color: yellow; /* Change color to yellow */
+        }
+        .review-form {
+            margin-top: 20px;
+        }
+        .review {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+        }
+        .review p {
+            margin: 0;
+            color: black; /* Change review text color to black */
+        }
+        .review .author {
+            font-weight: bold;
+            color: #800000;
+        }
+        .rating {
+            color: #f39c12;
+        }
+        .red-stars {
+            color: red; /* Change star color to red */
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+            color: yellow;
+            background-color: black; /* Change form background color to black */
+        }
+        button {
+            background-color: #800000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #4d0000;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container1">
+          <h1 class="logo"><a href="/index.html">Smart Canteen</a></h1>
+          <ul>
+            <li><a href="Home page.html">Home</a></li>
+            <li><a href="LoginPage.html">Login</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="ratings.html">Reviews</a></li>
+            <li><a href="collaborators.html">Collaborators</a></li>
+            <li><a href="contact1.html">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+<div class="container" id="reviewContainer">
+    <h1>Canteen Ratings and Reviews</h1> <!-- Apply the same color as the label -->
+    <!-- Display existing reviews -->
+    <div id="reviews">
+        <!-- JavaScript will populate this area with existing reviews -->
+    </div>
+
+    <!-- Form for submitting new review -->
+    <div class="review-form">
+        <h2>Your Review:</h2> <!-- Apply the same color as the label -->
+        <form id="reviewForm">
+            <div>
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div>
+                <label for="rating">Rating:</label>
+                <select id="rating" required>
+                    <option value="">Select Rating</option>
+                    <option value="5">★★★★★</option> <!-- Red stars -->
+                    <option value="4">★★★★</option> <!-- Red stars -->
+                    <option value="3">★★★</option> <!-- Red stars -->
+                    <option value="2">★★</option> <!-- Red stars -->
+                    <option value="1">★</option> <!-- Red stars -->
+                </select>
+            </div>
+            <div>
+                <label for="comment">Your Review:</label>
+                <textarea id="comment" rows="4" required></textarea>
+            </div>
+            <button type="submit">Submit Review</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Dummy data for initial reviews (can be replaced with dynamic data from a database)
+    const initialReviews = [
+        { name: "John Doe", rating: 5, comment: "Great food and service!" },
+        { name: "Jane Smith", rating: 4, comment: "The food was good, but it took a bit long to be served." }
+    ];
+
+    // Function to display reviews
+    function displayReviews() {
+        const reviewsContainer = document.getElementById("reviews");
+        reviewsContainer.innerHTML = "";
+        initialReviews.forEach(review => {
+            const div = document.createElement("div");
+            div.classList.add("review");
+            div.innerHTML = `
+                <p class="author">${review.name}</p>
+                <p class="rating">Rating: <span class="red-stars">${"★".repeat(review.rating)}</span></p>
+                <p>${review.comment}</p>
+            `;
+            reviewsContainer.appendChild(div);
+        });
+    }
+
+    // Call displayReviews function when the page loads
+    window.onload = displayReviews;
+
+    // Function to handle form submission
+    document.getElementById("reviewForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+        // Get form values
+        const name = document.getElementById("name").value;
+        const rating = parseInt(document.getElementById("rating").value);
+        const comment = document.getElementById("comment").value;
+        // Add the new review to initialReviews array
+        initialReviews.push({ name: name, rating: rating, comment: comment });
+        // Clear form fields
+        document.getElementById("name").value = "";
+        document.getElementById("rating").value = "";
+        document.getElementById("comment").value = "";
+        // Re-display reviews
+        displayReviews();
+    });
+
+    // Add a class to show the form with animation after the page loads
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('reviewContainer').classList.add('show-form');
+    });
+</script>
+
+</body>
+</html>

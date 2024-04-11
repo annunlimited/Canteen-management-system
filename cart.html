@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="navi.css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    /* * {
+        background-color: black;
+
+    } */
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container1">
+      <h1 class="logo"><a href="/index.html">Smart Canteen</a></h1>
+      <ul>
+        <li><a href="Home page.html">Home</a></li>
+        <li><a href="LoginPage.html">Login</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="ratings.html">Reviews</a></li>
+        <li><a href="collaborators.html">Collaborators</a></li>
+        <li><a href="contact1.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid mt-5">
+    <h1 style="color: rgb(0, 0, 0);">Cart</h1>
+    <ul id="cart-items" class="list-group"></ul>
+    <p style="color: rgb(255, 216, 216);">Total: ₹ <span id="total">0.00</span></p>
+    <button class="btn btn-danger" id="clear-cart">Clear Cart</button>
+    <a href="#" class="btn btn-success" id="checkout-btn">Proceed to Checkout</a>
+  </div>
+
+  <!-- Bootstrap and Custom JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var cartItems = localStorage.getItem("cartItems");
+      if (cartItems) {
+        cartItems = JSON.parse(cartItems);
+        var total = 0;
+        cartItems.forEach(function(item, index) {
+          $("#cart-items").append("<li class='list-group-item'>" + item.itemName + " - ₹" + item.price + " <button class='btn btn-sm btn-danger remove-item' data-index='" + index + "'>Remove</button></li>");
+          total += item.price;
+        });
+        $("#total").text(total.toFixed(2));
+      }
+
+      // Remove item from cart
+      $(document).on("click", ".remove-item", function() {
+        var index = $(this).data("index");
+        cartItems.splice(index, 1);
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        location.reload(); // Refresh the page to reflect changes
+      });
+
+      // Clear cart button click event
+      $("#clear-cart").click(function() {
+        localStorage.removeItem("cartItems");
+        location.reload(); // Refresh the page to reflect changes
+      });
+
+      // Checkout button click event
+      $("#checkout-btn").click(function() {
+        window.location.href = "DummyPayment.html"; // Redirect to payment page
+      });
+    });
+  </script>
+</body>
+</html>
